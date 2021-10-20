@@ -1,0 +1,10 @@
+ingress:
+  enable: true
+  class: nginx
+  host:
+  path: /
+
+service:
+  serviceName: zipkin-svc
+  servicePort: 9411
+  isLoadBalancer: false

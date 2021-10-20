@@ -1,0 +1,15 @@
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - argocd.tcc
+    paths:
+      - /
+    pathType: Prefix
+    extraPaths:
+      []
+    https: false
+  extraArgs:
+    - --insecure

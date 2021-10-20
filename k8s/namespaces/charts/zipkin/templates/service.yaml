@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: microservice-app-example
+  name: {{ .Values.service.serviceName }}
+spec:
+  ports:
+  - port: {{ .Values.service.servicePort }}
+    targetPort: 9411
+  selector:
+    service: zipkin
+  {{ if .Values.service.isLoadBalancer }}
+  type: LoadBalancer
+  {{ end }}
