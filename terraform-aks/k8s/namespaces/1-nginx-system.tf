@@ -18,6 +18,6 @@ resource "helm_release" "nginx_system" {
     templatefile(
       format("%s/charts/nginx-system/values.yaml", path.module), {
         NAMESPACE = kubernetes_namespace.nginx_system.metadata.0.name
-      })
+    })
   ]
 }

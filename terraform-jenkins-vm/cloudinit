@@ -1,0 +1,14 @@
+#cloud-config
+package_upgrade: true
+runcmd:
+  - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  - sudo apt install openjdk-8-jdk -y
+  - wget -qO - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+  - sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+  - sudo apt-get update && sudo apt-get install jenkins -y
+  - sudo sed -i 's/8080/80/g' /etc/default/jenkins
+  - sudo service jenkins restart
+  - curl -fsSL https://get.docker.com | sh
+  - KUBECTL_VERSION="1.19.7" && curl -o /bin/kubectl -fsSL "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
+  - HELM_VERSION="3.6.0"  && curl -o helm-amd64.tar.gz -fsSL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" && tar -zxvf helm-amd64.tar.gz && sudo mv linux-amd64/helm /bin/helm && rm -rf linux-amd64
+  - chmod +x /bin/kubectl && chmod +x /bin/helm
