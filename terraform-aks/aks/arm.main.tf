@@ -8,7 +8,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   name                      = format("%s-k8s", var.prefix)
   location                  = var.location
   resource_group_name       = azurerm_resource_group.rg.name
-  kubernetes_version        = "1.19.11"
+  kubernetes_version        = "1.20.9"
   dns_prefix                = var.prefix
   automatic_channel_upgrade = "node-image"
   network_profile {
